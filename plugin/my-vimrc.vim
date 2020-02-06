@@ -19,9 +19,7 @@ augroup END " no number when insert
     set nowritebackup
     set signcolumn=yes
     set backspace=indent,eol,start
-    syntax on
     set nocompatible
-    set encoding=utf-8
     set number 
     set relativenumber
     set nowrap 
@@ -35,7 +33,6 @@ augroup END " no number when insert
     set cursorline
     set background=light
     colorscheme spacegray
-    filetype off
 
 "======== <leader> mapping
 " when make mistake while record macro just undo and fix then stop record
@@ -78,7 +75,5 @@ command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | 
 command! Listspace echo 'leader space = -s r (reload) -s j&k (nextbuffer & prev) -s t, v, s (newtab, vsplit, split)'
 command! Listcoma echo 'leader coma = -c w (ysiw (add <"...)) -c , (emmet trigger) '
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-command! Light colorscheme papercolor | set bg=light
-command! Dark colorscheme spacegray | set bg=light
 
 endif
