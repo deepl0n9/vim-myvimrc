@@ -33,45 +33,39 @@ augroup END " no number when insert
     set cursorline
     set background=light
 
-"======== <leader> mapping
-" when make mistake while record macro just undo and fix then stop record
-" paste keystroke inside reqister macro and fix/delete undo and other
-" finally yank to register macro itself
-nnoremap Q @@
-inoremap jj <ESC>
-let maplocalleader = ","
-map <localleader>w ysiw
-map <localleader>a :set wrap
-"Markdown to HTML
-nmap <localleader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
-map <localleader>v :VimuxPromptCommand<CR>
-let mapleader = " "
-map <leader> :
-map <S-o> o<ESC>k
-map <leader>q :q!<CR>
-map <leader>w :w<CR>
-map <leader>k :bnext<CR>
-map <leader>j :bprev<CR>
-map <leader>g :Git
-map <leader>r :so ~/.vimrc<CR>
-map <leader>ge :GitGutterLineHighlightsEnable<CR>
-map <leader>gu :GitGutterLineHighlightsDisable<CR>
-map <leader>s :split<CR>
-map <leader>v :vsplit<CR>
-map <leader>d :bw<CR>
-map <leader>to :TagbarToggle<CR>
-map <leader>tc :TagbarClose<CR>
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-"""""""""""""""""""""""""""""""""""""
-
-" List user command
-" :WipeReg to clear register in  buffer
-command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
-command! Listspace echo 'leader space = -s r (reload) -s j&k (nextbuffer & prev) -s t, v, s (newtab, vsplit, split)'
-command! Listcoma echo 'leader coma = -c w (ysiw (add <"...)) -c , (emmet trigger) '
-command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-
-endif
+    nnoremap Q @@
+    inoremap jj <ESC>
+    let maplocalleader = ","
+    map <localleader>w ysiw
+    map <localleader>a :set wrap
+    "Markdown to HTML
+    nmap <localleader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
+    map <localleader>v :VimuxPromptCommand<CR>
+    let mapleader = " "
+    map <leader> :
+    map <S-o> o<ESC>k
+    map <leader>q :q!<CR>
+    map <leader>w :w<CR>
+    map <leader>k :bnext<CR>
+    map <leader>j :bprev<CR>
+    map <leader>g :Git
+    map <leader>ge :GitGutterLineHighlightsEnable<CR>
+    map <leader>gu :GitGutterLineHighlightsDisable<CR>
+    map <leader>s :split<CR>
+    map <leader>v :vsplit<CR>
+    map <leader>d :bw<CR>
+    map <leader>to :TagbarToggle<CR>
+    map <leader>tc :TagbarClose<CR>
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
+    """""""""""""""""""""""""""""""""""""
+    
+    " :WipeReg to clear register in  buffer
+    command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
+    command! Listspace echo 'leader space = -s r (reload) -s j&k (nextbuffer & prev) -s t, v, s (newtab, vsplit, split)'
+    command! Listcoma echo 'leader coma = -c w (ysiw (add <"...)) -c , (emmet trigger) '
+    command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+    
+    endif
