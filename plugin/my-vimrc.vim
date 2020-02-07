@@ -32,7 +32,6 @@ augroup END " no number when insert
     set laststatus=2
     set cursorline
     set background=light
-    colorscheme spacegray
 
 "======== <leader> mapping
 " when make mistake while record macro just undo and fix then stop record
