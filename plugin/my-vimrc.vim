@@ -61,7 +61,6 @@ map <leader>v :vsplit<CR>
 map <leader>d :bw<CR>
 map <leader>to :TagbarToggle<CR>
 map <leader>tc :TagbarClose<CR>
-nnoremap <silent> <leader><Space> :call Fzf_dev()<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
