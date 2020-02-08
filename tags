@@ -1,0 +1,87 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/8b7c636/
+$FZF_DEFAULT_COMMAND	plugin/my-vimrc.vim	/^  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git\/*"'$/;"	v
+<C-h>	plugin/my-vimrc.vim	/^    nnoremap <C-h> <C-w>h$/;"	m
+<C-i>	plugin/my-vimrc.vim	/^    map <C-i> :NERDTreeToggle<CR>$/;"	m
+<C-j>	plugin/my-vimrc.vim	/^    nnoremap <C-j> <C-w>j$/;"	m
+<C-j>	plugin/my-vimrc.vim	/^imap <C-j> <Plug>(coc-snippets-expand)$/;"	m
+<C-k>	plugin/my-vimrc.vim	/^    nnoremap <C-k> <C-w>k$/;"	m
+<C-l>	plugin/my-vimrc.vim	/^    nnoremap <C-l> <C-w>l$/;"	m
+<S-Tab>	plugin/my-vimrc.vim	/^inoremap <expr> <S-Tab> pumvisible() ? "\\<C-p>" : "\\<S-Tab>"$/;"	m
+<S-o>	plugin/my-vimrc.vim	/^    map <S-o> o<ESC>k$/;"	m
+<TAB>	plugin/my-vimrc.vim	/^inoremap <silent><expr> <TAB>$/;"	m
+<Tab>	plugin/my-vimrc.vim	/^inoremap <expr> <Tab> pumvisible() ? "\\<C-n>" : "\\<Tab>"$/;"	m
+<cr>	plugin/my-vimrc.vim	/^inoremap <expr> <cr> pumvisible() ? "\\<C-y>" : "\\<C-g>u\\<CR>"$/;"	m
+<leader>	plugin/my-vimrc.vim	/^    map <leader> :$/;"	m
+<leader>j	plugin/my-vimrc.vim	/^    map <leader>j :bprev<CR>$/;"	m
+<leader>k	plugin/my-vimrc.vim	/^    map <leader>k :bnext<CR>$/;"	m
+<leader>q	plugin/my-vimrc.vim	/^    map <leader>q :q!<CR>$/;"	m
+<leader>w	plugin/my-vimrc.vim	/^    map <leader>w :w<CR>$/;"	m
+<localleader>a	plugin/my-vimrc.vim	/^    map <localleader>a :set wrap$/;"	m
+<localleader>md	plugin/my-vimrc.vim	/^    nmap <localleader>md :%!\/usr\/local\/bin\/Markdown.pl --html4tags <cr>$/;"	m
+<localleader>v	plugin/my-vimrc.vim	/^    map <localleader>v :VimuxPromptCommand<CR>$/;"	m
+<localleader>w	plugin/my-vimrc.vim	/^    map <localleader>w ysiw$/;"	m
+Find	plugin/my-vimrc.vim	/^  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed/;"	c
+Fzf_dev	plugin/my-vimrc.vim	/^function! Fzf_dev()$/;"	f
+GutentagsClearCache	plugin/my-vimrc.vim	/^command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '\/*')$/;"	c
+K	plugin/my-vimrc.vim	/^nnoremap <silent> K :call <SID>show_documentation()<CR>$/;"	m
+NERDTreeMinimalUI	plugin/my-vimrc.vim	/^let NERDTreeMinimalUI = 1$/;"	v
+NERDTreeShowBookmarks	plugin/my-vimrc.vim	/^let NERDTreeShowBookmarks = 1$/;"	v
+NERDTreeShowHidden	plugin/my-vimrc.vim	/^let NERDTreeShowHidden = 1$/;"	v
+NERDTreeeDirArrows	plugin/my-vimrc.vim	/^let NERDTreeeDirArrows = 1$/;"	v
+Q	plugin/my-vimrc.vim	/^    nnoremap Q @@$/;"	m
+Snip	plugin/my-vimrc.vim	/^command! Snip :CocCommand snippets.editSnippets<CR>$/;"	c
+ToggleSyntastic	plugin/my-vimrc.vim	/^function! ToggleSyntastic()$/;"	f
+WipeReg	plugin/my-vimrc.vim	/^command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor$/;"	c
+[g	plugin/my-vimrc.vim	/^nmap <silent> [g <Plug>(coc-diagnostic-prev)$/;"	m
+]g	plugin/my-vimrc.vim	/^nmap <silent> ]g <Plug>(coc-diagnostic-next)$/;"	m
+every	plugin/my-vimrc.vim	/^    augroup every$/;"	a
+g:airline#extensions#tabline#buffer_nr_show	plugin/my-vimrc.vim	/^let g:airline#extensions#tabline#buffer_nr_show = 1$/;"	v
+g:airline#extensions#tabline#enabled	plugin/my-vimrc.vim	/^let g:airline#extensions#tabline#enabled = 1$/;"	v
+g:airline#extensions#tabline#formatter	plugin/my-vimrc.vim	/^let g:airline#extensions#tabline#formatter = 'unique_tail'$/;"	v
+g:coc_snippet_next	plugin/my-vimrc.vim	/^let g:coc_snippet_next = '<C-n>'$/;"	v
+g:coc_snippet_prev	plugin/my-vimrc.vim	/^let g:coc_snippet_prev = '<C-p>'$/;"	v
+g:gitgutter_override_sign_column_highlight	plugin/my-vimrc.vim	/^let g:gitgutter_override_sign_column_highlight = 1$/;"	v
+g:gitgutter_sign_removed	plugin/my-vimrc.vim	/^let g:gitgutter_sign_removed = 'x'$/;"	v
+g:gutentags_cache_dir	plugin/my-vimrc.vim	/^let g:gutentags_cache_dir = expand('~\/.cache\/vim\/ctags\/')$/;"	v
+g:gutentags_ctags_exclude	plugin/my-vimrc.vim	/^let g:gutentags_ctags_exclude = ['*.css', '*.html','*.json', '*.xml',$/;"	v
+g:gutentags_generate_on_empty_buffer	plugin/my-vimrc.vim	/^let g:gutentags_generate_on_empty_buffer = 0$/;"	v
+g:gutentags_generate_on_missing	plugin/my-vimrc.vim	/^let g:gutentags_generate_on_missing = 1$/;"	v
+g:gutentags_generate_on_new	plugin/my-vimrc.vim	/^let g:gutentags_generate_on_new = 1$/;"	v
+g:gutentags_generate_on_write	plugin/my-vimrc.vim	/^let g:gutentags_generate_on_write = 1$/;"	v
+g:gutentags_project_root	plugin/my-vimrc.vim	/^ let g:gutentags_project_root = ['.git']$/;"	v
+g:indent_guides_auto_colors	plugin/my-vimrc.vim	/^let g:indent_guides_auto_colors = 0$/;"	v
+g:indent_guides_enable_on_vim_startup	plugin/my-vimrc.vim	/^let g:indent_guides_enable_on_vim_startup = 1 $/;"	v
+g:myvimrc	plugin/my-vimrc.vim	/^    let g:myvimrc = 1$/;"	v
+g:syntastic_always_populate_loc_list	plugin/my-vimrc.vim	/^let g:syntastic_always_populate_loc_list = 0$/;"	v
+g:syntastic_auto_loc_list	plugin/my-vimrc.vim	/^let g:syntastic_auto_loc_list = 0$/;"	v
+g:syntastic_check_on_open	plugin/my-vimrc.vim	/^let g:syntastic_check_on_open = 0$/;"	v
+g:syntastic_check_on_wq	plugin/my-vimrc.vim	/^let g:syntastic_check_on_wq = 0$/;"	v
+g:user_emmet_anchorizesummary_key	plugin/my-vimrc.vim	/^let g:user_emmet_anchorizesummary_key = '<C-y>11'$/;"	v
+g:user_emmet_anchorizeurl_key	plugin/my-vimrc.vim	/^let g:user_emmet_anchorizeurl_key = '<C-y>10'$/;"	v
+g:user_emmet_balancetaginward_key	plugin/my-vimrc.vim	/^let g:user_emmet_balancetaginward_key = '<C-y>3'$/;"	v
+g:user_emmet_balancetagoutward_key	plugin/my-vimrc.vim	/^let g:user_emmet_balancetagoutward_key = '<C-y>4'$/;"	v
+g:user_emmet_codepretty_key	plugin/my-vimrc.vim	/^let g:user_emmet_codepretty_key = '<C-y>13'$/;"	v
+g:user_emmet_expandword_key	plugin/my-vimrc.vim	/^let g:user_emmet_expandword_key = '<C-y>1'$/;"	v
+g:user_emmet_imagesize_key	plugin/my-vimrc.vim	/^let g:user_emmet_imagesize_key = '<C-y>7'$/;"	v
+g:user_emmet_leader_key	plugin/my-vimrc.vim	/^let g:user_emmet_leader_key=','$/;"	v
+g:user_emmet_mergelines_key	plugin/my-vimrc.vim	/^let g:user_emmet_mergelines_key = '<C-y>12'$/;"	v
+g:user_emmet_next_key	plugin/my-vimrc.vim	/^let g:user_emmet_next_key = '<C-y>5'$/;"	v
+g:user_emmet_prev_key	plugin/my-vimrc.vim	/^let g:user_emmet_prev_key = '<C-y>6'$/;"	v
+g:user_emmet_splitjointag_key	plugin/my-vimrc.vim	/^let g:user_emmet_splitjointag_key = '<C-y>9'$/;"	v
+g:user_emmet_togglecomment_key	plugin/my-vimrc.vim	/^let g:user_emmet_togglecomment_key = '<C-y>8'$/;"	v
+g:user_emmet_update_tag	plugin/my-vimrc.vim	/^let g:user_emmet_update_tag = '<C-y>2'$/;"	v
+jj	plugin/my-vimrc.vim	/^    inoremap jj <ESC>$/;"	m
+mapleader	plugin/my-vimrc.vim	/^    let mapleader = " "$/;"	v
+maplocalleader	plugin/my-vimrc.vim	/^    let maplocalleader = ","$/;"	v
+s:check_back_space	plugin/my-vimrc.vim	/^function! s:check_back_space() abort$/;"	f
+s:edit_file	plugin/my-vimrc.vim	/^  function! s:edit_file(item)$/;"	f
+s:files	plugin/my-vimrc.vim	/^  function! s:files()$/;"	f
+s:prepend_icon	plugin/my-vimrc.vim	/^  function! s:prepend_icon(candidates)$/;"	f
+s:show_documentation	plugin/my-vimrc.vim	/^function! s:show_documentation()$/;"	f
