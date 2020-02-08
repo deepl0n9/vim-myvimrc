@@ -81,22 +81,6 @@ let g:user_emmet_codepretty_key = '<C-y>13'
 
 let g:user_emmet_leader_key=','
 "===== fzf====
-" ====== guttentags =====
-set statusline+=%{gutentags#statusline()}
- let g:gutentags_project_root = ['.git']
-let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
-"Use the following command to clear the cache quickly:
-command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '/*')
-let g:gutentags_ctags_exclude = ['*.css', '*.html','*.json', '*.xml',
-                            \ '*.phar', '*.ini', '*.rst', '*.md',
-                            \ '*vendor/*/test*', '*vendor/*/Test*',
-                            \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
-                            \ '*var/cache*', '*var/log*','*.']
-let g:gutentags_generate_on_new = 1
-let g:gutentags_generate_on_missing = 1
-let g:gutentags_generate_on_write = 1
-let g:gutentags_generate_on_empty_buffer = 0
-""""""""""""end guttentags"""""""""""""""""""""""""
 " airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'

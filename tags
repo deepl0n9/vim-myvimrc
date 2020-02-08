@@ -6,7 +6,6 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	/8b7c636/
-$FZF_DEFAULT_COMMAND	plugin/my-vimrc.vim	/^  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git\/*"'$/;"	v
 <C-h>	plugin/my-vimrc.vim	/^    nnoremap <C-h> <C-w>h$/;"	m
 <C-i>	plugin/my-vimrc.vim	/^    map <C-i> :NERDTreeToggle<CR>$/;"	m
 <C-j>	plugin/my-vimrc.vim	/^    nnoremap <C-j> <C-w>j$/;"	m
@@ -27,8 +26,6 @@ $FZF_DEFAULT_COMMAND	plugin/my-vimrc.vim	/^  let $FZF_DEFAULT_COMMAND = 'rg --fi
 <localleader>md	plugin/my-vimrc.vim	/^    nmap <localleader>md :%!\/usr\/local\/bin\/Markdown.pl --html4tags <cr>$/;"	m
 <localleader>v	plugin/my-vimrc.vim	/^    map <localleader>v :VimuxPromptCommand<CR>$/;"	m
 <localleader>w	plugin/my-vimrc.vim	/^    map <localleader>w ysiw$/;"	m
-Find	plugin/my-vimrc.vim	/^  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed/;"	c
-Fzf_dev	plugin/my-vimrc.vim	/^function! Fzf_dev()$/;"	f
 GutentagsClearCache	plugin/my-vimrc.vim	/^command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '\/*')$/;"	c
 K	plugin/my-vimrc.vim	/^nnoremap <silent> K :call <SID>show_documentation()<CR>$/;"	m
 NERDTreeMinimalUI	plugin/my-vimrc.vim	/^let NERDTreeMinimalUI = 1$/;"	v
@@ -81,7 +78,4 @@ jj	plugin/my-vimrc.vim	/^    inoremap jj <ESC>$/;"	m
 mapleader	plugin/my-vimrc.vim	/^    let mapleader = " "$/;"	v
 maplocalleader	plugin/my-vimrc.vim	/^    let maplocalleader = ","$/;"	v
 s:check_back_space	plugin/my-vimrc.vim	/^function! s:check_back_space() abort$/;"	f
-s:edit_file	plugin/my-vimrc.vim	/^  function! s:edit_file(item)$/;"	f
-s:files	plugin/my-vimrc.vim	/^  function! s:files()$/;"	f
-s:prepend_icon	plugin/my-vimrc.vim	/^  function! s:prepend_icon(candidates)$/;"	f
 s:show_documentation	plugin/my-vimrc.vim	/^function! s:show_documentation()$/;"	f
