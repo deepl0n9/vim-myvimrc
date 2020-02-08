@@ -31,7 +31,6 @@ augroup END " no number when insert
     set expandtab
     set laststatus=2
     set cursorline
-    set background=light
 
     nnoremap Q @@
     inoremap jj <ESC>
