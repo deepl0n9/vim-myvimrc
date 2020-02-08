@@ -59,7 +59,7 @@ augroup END " no number when insert
     
 command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 command! Snip :CocCommand snippets.editSnippets<CR>
-
+ set rtp+=/usr/local/opt/fzf
 " ripgrep no devicons
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
@@ -122,7 +122,6 @@ let g:user_emmet_codepretty_key = '<C-y>13'
 
 let g:user_emmet_leader_key=','
 "===== fzf====
- set rtp+=/usr/local/opt/fzf
 " ====== guttentags =====
 set statusline+=%{gutentags#statusline()}
  let g:gutentags_project_root = ['.git']
