@@ -1,7 +1,7 @@
 if !exists('g:myvimrc')
 	let g:myvimrc = 1
 endif
-if g:myvimrc=1
+if g:myvimrc
     set shortmess+=c
     set lazyredraw
     set smartcase
