@@ -1,6 +1,3 @@
-if !exists('g:myvimrc')
-    let g:myvimrc = 1
-endif
 
 if g:myvimrc
     set shortmess+=c
@@ -109,38 +106,5 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-" --- coc
-inoremap <silent><expr> <tab>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableorjumpable() ? "\<c-r>=coc#rpc#request('dokeymap', ['snippets-expand-jump',''])\<cr>" :
-      \ <sid>check_back_space() ? "\<tab>" :
-      \ coc#refresh()
-inoremap <silent><expr> <tab>
-      \ pumvisible() ? "\<c-n>" :
-      \ <sid>check_back_space() ? "\<tab>" :
-      \ coc#refresh()
-
-imap <c-j> <plug>(coc-snippets-expand)
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-let g:coc_snippet_next = '<TAB>'
-let g:coc_snippet_prev = '<S-TAB>'
-inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
-" use k to show documentation in preview window
-nnoremap <silent> k :call <sid>show_documentation()<cr>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call cocaction('dohover')
-  endif
-endfunction
-nmap <silent> [g <plug>(coc-diagnostic-prev)
-nmap <silent> ]g <plug>(coc-diagnostic-next)
 
 endif
