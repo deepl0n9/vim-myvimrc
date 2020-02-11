@@ -1,4 +1,4 @@
-
+if !exists('g:myvimrc')
 if g:myvimrc=1
     set shortmess+=c
     set lazyredraw
