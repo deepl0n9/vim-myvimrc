@@ -3,11 +3,6 @@ if !exists('g:myvimrc')
 endif
 
 if g:myvimrc
-    augroup every
-  autocmd!
-  au InsertEnter * set norelativenumber | set cursorcolumn
-  au InsertLeave * set relativenumber | set nocursorcolumn
-augroup END " no number when insert
     set shortmess+=c
     set lazyredraw
     set smartcase
@@ -47,6 +42,8 @@ augroup END " no number when insert
     map <leader>w :w<CR>
     map <leader>k :bnext<CR>
     map <leader>j :bprev<CR>
+    map <leader>s :split<CR>
+    map <leader>v :vsplit<CR>
     "localleader
     let maplocalleader = ","
     map <localleader>w ysiw
@@ -59,25 +56,33 @@ augroup END " no number when insert
     
 command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 command! Snip :CocCommand snippets.editSnippets<CR>
+augroup every
+  autocmd!
+  au InsertEnter * set norelativenumber | set cursorcolumn
+  au InsertLeave * set relativenumber | set nocursorcolumn
+augroup END " no number when insert
+
+
+
+autocmd vimenter,colorscheme * :hi indentguidesodd   ctermbg=black
+autocmd vimenter,colorscheme * :hi indentguideseven  ctermbg=black
 "indent guides
 let g:indent_guides_enable_on_vim_startup = 1 
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=black
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=black
 " emmet
-let g:user_emmet_expandword_key = '<C-y>1'
-let g:user_emmet_update_tag = '<C-y>2'
-let g:user_emmet_balancetaginward_key = '<C-y>3'
-let g:user_emmet_balancetagoutward_key = '<C-y>4'
-let g:user_emmet_next_key = '<C-y>5'
-let g:user_emmet_prev_key = '<C-y>6'
-let g:user_emmet_imagesize_key = '<C-y>7'
-let g:user_emmet_togglecomment_key = '<C-y>8'
-let g:user_emmet_splitjointag_key = '<C-y>9'
-let g:user_emmet_anchorizeurl_key = '<C-y>10'
-let g:user_emmet_anchorizesummary_key = '<C-y>11'
-let g:user_emmet_mergelines_key = '<C-y>12'
-let g:user_emmet_codepretty_key = '<C-y>13'
+let g:user_emmet_expandword_key = '<c-y>1'
+let g:user_emmet_update_tag = '<c-y>2'
+let g:user_emmet_balancetaginward_key = '<c-y>3'
+let g:user_emmet_balancetagoutward_key = '<c-y>4'
+let g:user_emmet_next_key = '<c-y>5'
+let g:user_emmet_prev_key = '<c-y>6'
+let g:user_emmet_imagesize_key = '<c-y>7'
+let g:user_emmet_togglecomment_key = '<c-y>8'
+let g:user_emmet_splitjointag_key = '<c-y>9'
+let g:user_emmet_anchorizeurl_key = '<c-y>10'
+let g:user_emmet_anchorizesummary_key = '<c-y>11'
+let g:user_emmet_mergelines_key = '<c-y>12'
+let g:user_emmet_codepretty_key = '<c-y>13'
 
 let g:user_emmet_leader_key=','
 "===== fzf====
@@ -92,62 +97,50 @@ let g:gitgutter_override_sign_column_highlight = 1
 let g:gitgutter_sign_removed = 'x'
 set updatetime=100 " update sign colum every quarter second = default is 4000
 """"""""end gitgutter"""""""""""""""""""""""""""""
+" nerdtree
+let nerdtreeshowhidden = 1
+let nerdtreeshowbookmarks = 1
+let nerdtreeminimalui = 1
+let nerdtreeedirarrows = 1
 
 
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 
 " --- coc
-inoremap <silent><expr> <TAB>
+inoremap <silent><expr> <tab>
       \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#expandableorjumpable() ? "\<c-r>=coc#rpc#request('dokeymap', ['snippets-expand-jump',''])\<cr>" :
+      \ <sid>check_back_space() ? "\<tab>" :
       \ coc#refresh()
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+inoremap <silent><expr> <tab>
+      \ pumvisible() ? "\<c-n>" :
+      \ <sid>check_back_space() ? "\<tab>" :
       \ coc#refresh()
 
-imap <C-j> <Plug>(coc-snippets-expand)
+imap <c-j> <plug>(coc-snippets-expand)
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-let g:coc_snippet_next = '<C-n>'
-let g:coc_snippet_prev = '<C-p>'
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+let g:coc_snippet_next = '<TAB>'
+let g:coc_snippet_prev = '<S-TAB>'
+inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
+" use k to show documentation in preview window
+nnoremap <silent> k :call <sid>show_documentation()<cr>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
-    call CocAction('doHover')
+    call cocaction('dohover')
   endif
 endfunction
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-" nerdtree
-let NERDTreeShowHidden = 1
-let NERDTreeShowBookmarks = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeeDirArrows = 1
-" syntastic "
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-function! ToggleSyntastic()
-    for i in range(1, winnr('$'))
-        let bnum = winbufnr(i)
-        if getbufvar(bnum, '&buftype') == 'quickfix'
-            lclose
-            return
-        endif
-    endfor
-    SyntasticCheck
-endfunction
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+nmap <silent> [g <plug>(coc-diagnostic-prev)
+nmap <silent> ]g <plug>(coc-diagnostic-next)
+
 endif

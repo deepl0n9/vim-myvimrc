@@ -14,70 +14,15 @@ easy to switch between vim and neovim
                             Table Of Contents
 CONTENTS                                                   *myvimrc-contents*
 
-    1.Default Mapping & Settings ............................|myvimrc-mapping|
-    2.Required Plugins  .....................................|myvimrc-plugins|
-    3.Recommended plugins mapping .........................|myvimrc-recommend|
-    4.Recommended Settings For Plugins  ......................|myvimrc-review|
-    
+    1.Default  ...........................................|myvimrc-builtin|
+    2.Plugin List  .......................................|myvimrc-plugins|
+    3.Plugin settings ....................................|myvimrc-plugset|
+    4.Default Command  ...................................|myvimrc-command|
+    4.Additional settings  ............................|myvimrc-additional|
 
 ==============================================================================
-DEFAULT MAPPING & SETTINGS                                  *myvimrc-mapping*
+BUILT IN SETTINGS                                          *myvimrc-builtin*
 
--> standart mapping <-     
-    inoremap jj <ESC>           = make jj in insert mode like <ESC>
-    nnoremap Q @@
-    map <S-o> o<ESC>k           = to add line in below
-    nnoremap <C-o> i<CR><ESC>k  = to add line in above 
-    nnoremap <C-h> <C-w>h       = buffer left
-    nnoremap <C-j> <C-w>j       = buffer down 
-    nnoremap <C-k> <C-w>k       = buffer up
-    nnoremap <C-l> <C-w>l       = buffer right
-
--> plugin mapping
-<leader>p prettier
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-imap <C-j> <Plug>(coc-snippets-expand)
-map <C-i> :NERDTreeToggle<CR>
-nmap ga <Plug>(EasyAlign)
-xmap ga <Plug>(EasyAlign)
-command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
-command! Snip :CocCommand snippets.editSnippets<CR>
-<leader>, for emmet trigger
-
-------------------------------------+
-    leader  key                     |         
-                                    |
-    let mapleader = " "             |
-    map <leader> :                  |
-    map <leader>q :q!<CR>           |
-    map <leader>w :w<CR>            |
-    map <leader>k :bnext<CR>        |
-    map <leader>j :bprev<CR>        |
-    map <leader>g :Git              |
-    map <leader>s :split<CR>        |
-    map <leader>v :vsplit<CR>       |
-    map <leader>d :bw<CR>           |
-    map <leader>to :TagbarToggle<CR>|
-    map <leader>tc :TagbarClose<CR> |
-------------------------------------+
- 
-    localleader key
-let maplocalleader = ","
-Markdown to HTML
-nmap <localleader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
-map <localleader>w ysiw (add surround in word)
-map <localleader>a :set wrap (because default is nowrap)
-map <localleader>v :VimuxPromptCommand<CR>
-
-DEFAULT SETTINGS
-
-if g:myvimrc
-    augroup every
-  autocmd!
-  au InsertEnter * set norelativenumber | set cursorcolumn
-  au InsertLeave * set relativenumber | set nocursorcolumn
-augroup END " no number when insert
     set shortmess+=c
     set lazyredraw
     set smartcase
@@ -101,35 +46,40 @@ augroup END " no number when insert
     set expandtab
     set laststatus=2
     set cursorline
-==============================================================================
-LIST PLUGIN                                                  *myvimrc-plugins*
 
+==============================================================================
+PLUGIN LIST                                                *myvimrc-plugins*
+
+Notes: this plugin installed with plug from junnegun
+
+call plug#begin('~/.config/nvim/plugged')
 Plug 'deepl0n9/vim-arrowless'
 Plug 'deepl0n9/vim-myvimrc'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html', 'js', 'json'] }
 Plug 'benmills/vimux'
 Plug 'scrooloose/nerdtree'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-surround'   
 Plug 'tpope/vim-eunuch'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'tpope/vim-markdown'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'terryma/vim-multiple-cursors' 
 Plug 'junegunn/vim-easy-align'
 Plug 'nathanaelkane/vim-indent-guides' 
 "========== Colorscheme ===============
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+
 " ======== Generic Programming Support 
-Plug 'majutsushi/tagbar'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim'
 Plug 'tomtom/tcomment_vim'  
 Plug 'mattn/emmet-vim'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html', 'js', 'json'] }
 Plug 'vim-syntastic/syntastic'
 "=========================
 
@@ -142,152 +92,176 @@ Plug 'junegunn/fzf.vim'
 "======== vim text object
 Plug 'kana/vim-textobj-user'
 Plug 'whatyouhide/vim-textobj-xmlattr'
-==============================================================================
-REVIEW PLUGIN SETTINGS                                 *myvimrc-settings*
+call plug#end()
 
-" just fzf
+
+==============================================================================
+PLUGIN SETTINGS                                             *myvimrc-plugset* 
+
+autocmd vimenter,colorscheme * :hi indentguidesodd   ctermbg=black
+autocmd vimenter,colorscheme * :hi indentguideseven  ctermbg=black
+"indent guides
+let g:indent_guides_enable_on_vim_startup = 1 
+let g:indent_guides_auto_colors = 0
+" emmet
+let g:user_emmet_expandword_key = '<c-y>1'
+let g:user_emmet_update_tag = '<c-y>2'
+let g:user_emmet_balancetaginward_key = '<c-y>3'
+let g:user_emmet_balancetagoutward_key = '<c-y>4'
+let g:user_emmet_next_key = '<c-y>5'
+let g:user_emmet_prev_key = '<c-y>6'
+let g:user_emmet_imagesize_key = '<c-y>7'
+let g:user_emmet_togglecomment_key = '<c-y>8'
+let g:user_emmet_splitjointag_key = '<c-y>9'
+let g:user_emmet_anchorizeurl_key = '<c-y>10'
+let g:user_emmet_anchorizesummary_key = '<c-y>11'
+let g:user_emmet_mergelines_key = '<c-y>12'
+let g:user_emmet_codepretty_key = '<c-y>13'
+
+let g:user_emmet_leader_key=','
+"===== fzf====
+" airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+
+" ===== gitgutter ==== 
+let g:gitgutter_override_sign_column_highlight = 1
+let g:gitgutter_sign_removed = 'x'
+set updatetime=100 " update sign colum every quarter second = default is 4000
+""""""""end gitgutter"""""""""""""""""""""""""""""
+" nerdtree
+let nerdtreeshowhidden = 1
+let nerdtreeshowbookmarks = 1
+let nerdtreeminimalui = 1
+let nerdtreeedirarrows = 1
+
+
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+" --- coc
+inoremap <silent><expr> <tab>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableorjumpable() ? "\<c-r>=coc#rpc#request('dokeymap', ['snippets-expand-jump',''])\<cr>" :
+      \ <sid>check_back_space() ? "\<tab>" :
+      \ coc#refresh()
+inoremap <silent><expr> <tab>
+      \ pumvisible() ? "\<c-n>" :
+      \ <sid>check_back_space() ? "\<tab>" :
+      \ coc#refresh()
+
+imap <c-j> <plug>(coc-snippets-expand)
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<TAB>'
+let g:coc_snippet_prev = '<S-TAB>'
+inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
+" use k to show documentation in preview window
+nnoremap <silent> k :call <sid>show_documentation()<cr>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call cocaction('dohover')
+  endif
+endfunction
+nmap <silent> [g <plug>(coc-diagnostic-prev)
+nmap <silent> ]g <plug>(coc-diagnostic-next)
+
+==============================================================================
+DEFAULT COMMAND                                             *myvimrc-command*
+
+command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
+command! Snip :CocCommand snippets.editSnippets<CR>
+augroup every
+  autocmd!
+  au InsertEnter * set norelativenumber | set cursorcolumn
+  au InsertLeave * set relativenumber | set nocursorcolumn
+augroup END " no number when insert
+
+NOTES: MAKE THIS COMMAND in vimcr or init.vim
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+command! Light colorscheme papercolor | set bg=light
+
+==============================================================================
+ADDITIONAL SETTINGS                                      *myvimrc-additional*
+
+colorscheme papercolor
+set background=dark
+let mapleader = " "
+let maplocalleader = ","
+let g:airline_theme = 'dark'
+map <leader>r :So<CR>
+nnoremap <silent> <leader><Space> :call Fzf_dev()<CR>
+"change to :Files<CR> if dont wanna use bat+devicons
+nnoremap <F8> :call ToggleSyntastic()<CR>
+command! Light set background=light
+command! So :so ~/.config/nvim/init.vim | echo 'Vim Reloaded' 
+"change to ~/.vimrc if vim8
+set rtp+=/usr/local/opt/fzf
+
+" ripgrep standart change command with :Files<CR>
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   set grepprg=rg\ --vimgrep
   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 
-" fzf + devicons
+" Files + devicons
 function! Fzf_dev()
   let l:fzf_files_options = '--preview "bat --theme="OneHalfDark" --style=numbers,changes --color always {2..-1} | head -'.&lines.'"'
+
   function! s:files()
     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
     return s:prepend_icon(l:files)
   endfunction
+
   function! s:prepend_icon(candidates)
     let l:result = []
     for l:candidate in a:candidates
       let l:filename = fnamemodify(l:candidate, ':p:t')
       let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
       call add(l:result, printf('%s %s', l:icon, l:candidate))
-    endfor
+   endfor
+
     return l:result
   endfunction
+
   function! s:edit_file(item)
     let l:pos = stridx(a:item, ' ')
     let l:file_path = a:item[pos+1:-1]
     execute 'silent e' l:file_path
   endfunction
+
   call fzf#run({
         \ 'source': <sid>files(),
         \ 'sink':   function('s:edit_file'),
         \ 'options': '-m ' . l:fzf_files_options,
         \ 'down':    '40%' })
 endfunction
-
------- indent guides -------
-
-let g:indent_guides_enable_on_vim_startup = 1 
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=black
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=black
-
-" emmet
-let g:user_emmet_leader_key=','
-let g:user_emmet_expandword_key = '<C-y>1'
-let g:user_emmet_update_tag = '<C-y>2'
-let g:user_emmet_balancetaginward_key = '<C-y>3'
-let g:user_emmet_balancetagoutward_key = '<C-y>4'
-let g:user_emmet_next_key = '<C-y>5'
-let g:user_emmet_prev_key = '<C-y>6'
-let g:user_emmet_imagesize_key = '<C-y>7'
-let g:user_emmet_togglecomment_key = '<C-y>8'
-let g:user_emmet_splitjointag_key = '<C-y>9'
-let g:user_emmet_anchorizeurl_key = '<C-y>10'
-let g:user_emmet_anchorizesummary_key = '<C-y>11'
-let g:user_emmet_mergelines_key = '<C-y>12'
-let g:user_emmet_codepretty_key = '<C-y>13'
-
-" airline
-set this manual -> let g:airline_theme='dark'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#tabline#buffer_nr_show = 1
-
-" ===== gitgutter ==== 
-let g:gitgutter_override_sign_column_highlight = 1
-let g:gitgutter_sign_removed = 'x'
-set updatetime=100 " update sign colum every quarter second = default is 4000
-
-" --- coc
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-imap <C-j> <Plug>(coc-snippets-expand)
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-let g:coc_snippet_next = '<C-n>'
-let g:coc_snippet_prev = '<C-p>'
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" nerdtree
-let NERDTreeShowHidden = 1
-let NERDTreeShowBookmarks = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeeDirArrows = 1
-"===========end nerdtree==============
-
-" syntastic "
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-function! ToggleSyntastic()
-    for i in range(1, winnr('$'))
-        let bnum = winbufnr(i)
-        if getbufvar(bnum, '&buftype') == 'quickfix'
-            lclose
-            return
-        endif
-    endfor
-    SyntasticCheck
-endfunction
-
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-==============================================================================
-Recommended PLUGIN Mapping                                 *myvimrc-recommend*
-
-for the best you should set this in vimrc / init.vim
-
-1. fzf or fzf + devicons
-- if you just wanna fzf
-nnoremap <silent> <leader><Space> :Files<CR>
-- or fzf with devicons ( more beautiful )
-nnoremap <silent> <leader><Space> :call Fzf_dev()<CR>
-
-2. syntastic
-nnoremap <anything> :call ToggleSyntastic()<CR>
-
-3. command
--this command for delete all Register
-command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
-command! Snip :CocCommand snippets.editSnippets<CR>
+ 
+" ====== guttentags =====
+set statusline+=%{gutentags#statusline()}
+ let g:gutentags_project_root = ['.git']
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
+"Use the following command to clear the cache quickly:
+" command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '/*')
+let g:gutentags_ctags_exclude = ['*.css', '*.html','*.json', '*.xml',
+                            \ '*.phar', '*.ini', '*.rst', '*.md',
+                            \ '*vendor/*/test*', '*vendor/*/Test*',
+                            \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
+                            \ '*var/cache*', '*var/log*','*.']
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+""""""""""""end guttentags"""""""""""""""""""""""""
